@@ -15,6 +15,6 @@ describe('should add 200 with html display', function() {
     .then(function(res) {
       expect(res).to.be.status(200);
       //expect(res,body).to.deep.equal('<p>Hello world</p>');
-    })
+    });
   });
 });
