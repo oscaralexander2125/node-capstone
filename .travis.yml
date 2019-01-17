@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZFGiUaDXR8cpLA9KdTDFooP+1YE6KjT6uU+HV6xYWuBcCTe6YHEieYLVrFO8BEGgUFdytc0k5PyuJCYC1kH8fSnJNKEvythNnIABZSkAo9g1Gxx1H+H0TcvsrXyddQs+k7jgoeOytFMOqN/6yK88hJ4pJ3JinnpwbGjJ0YbVWTEdd4Y6XVnXI6iFED4CDMJ93MyKOmT/EJZmUpOdi/b0Rrt7kcKJVphaXGYpI3gJAVgmrS9mCIk+LcWPOWx+mDbGT7/n0A4ETMHxpC14lTSBb3+OYaj4egSctBk+DLmQuml+6NZHBb8xYMAm9PHbHKfBEPhdCysOzoPlayFWDW2WmC+BTFxipfAdxKJ3g/dKtg3tSC+ohxOyOwaOW3zk3l5CeOJvfwW0LfXGh5Yldqj4EBeNFMtw0vWotEwRbZ9jf83cnPDnz6AusbKAa5LVzT+0+SSlCBlMmgaC66gd/2tCoEZ1OaT3V3SH39nC7pJ0rjn2gMZpo25UwHBA0tzJmUZ/wiI2KubISuPLu3uEN72BiCLpYEHZrLaw+zW1sLXQkLZyOSALrtxIfqHjLbyNTt9KehxFOUEfRboQX5+whmDiePmrlIkYSW74csgILH1ZuVLWUtj0/1NJb4MqKslC8PWMwscOtP8twLdX4SVOxwQGlNsKxkJkhpdq3Z6Dd0re4p4=
+  app: warm-bayou-57425
+  on:
+    repo: oscaralexander2125/node-capstone
