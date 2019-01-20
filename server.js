@@ -1,40 +1,58 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
 app.use(express.static('public'));
 
+const trackerRoute = require('./daily-health/health-router')
+const {DATABASE_URL, TEST_DATABASE_URL, PORT} = require('./config');
 
+app.use(express.json());
+
+app.use('/track', trackerRoute);
 
 let server;
 
-function runServer() {
-  const port = process.env.PORT || 8080;
+app.use('*', function(req, res) {
+  res.status(404).json({message: 'Not Found'});
+})
+
+function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
-    server = app
-      .listen(port, () => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
-        resolve(server);
+        resolve();
       })
-      .on('error', err => {
-        reject(err);
-      });
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
+    });
   });
 }
 
 function closeServer() {
-  return new Promise((resolve, reject) => {
-    console.log(`Closing server`);
-    server.close(err => {
-      if(err) {
-        reject(err);
-        return;
-      }
-      resolve();
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
     });
   });
 }
 
 if (require.main === module) {
-  runServer().catch(err => console.error(err));
+  runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
 module.exports = {app, runServer, closeServer};
