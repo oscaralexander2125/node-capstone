@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const {HealthTracker} = require('../models');
+const {HealthTracker} = require('./models');
 const bodyParser = require('body-parser');
 const jsonparser = bodyParser.json();
 

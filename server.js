@@ -8,10 +8,12 @@ app.use(express.static('public'));
 
 const trackerRoute = require('./daily-health/health-router')
 const {DATABASE_URL, TEST_DATABASE_URL, PORT} = require('./config');
+const {router: userRoute} = require('./users');
 
 app.use(express.json());
 
-app.use('/track', trackerRoute);
+app.use('/api/track', trackerRoute);
+app.use('/api/users', userRoute);
 
 let server;
 
