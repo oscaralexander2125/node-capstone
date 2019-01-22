@@ -27,6 +27,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  //console.log(req.body);
   const requiredFields = ['weight'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -83,4 +84,4 @@ HealthTracker.findByIdAndRemove(req.params.id)
   });
 });
 
-module.exports = router;
+module.exports = {router};

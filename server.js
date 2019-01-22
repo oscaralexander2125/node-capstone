@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 
 app.use(express.static('public'));
 
-const trackerRoute = require('./daily-health/health-router')
+const {router: trackerRoute} = require('./daily-health');
 const {DATABASE_URL, TEST_DATABASE_URL, PORT} = require('./config');
 const {router: userRoute} = require('./users');
 
