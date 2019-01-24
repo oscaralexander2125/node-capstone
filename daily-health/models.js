@@ -1,5 +1,6 @@
 'use strict';
 
+
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -7,6 +8,8 @@ mongoose.Promise = global.Promise;
 const healthTrackSchema = mongoose.Schema({
   weight: {type: String, required: true},
   caloriesBurned: String,
+  caloriesConsumed:String,
+  meals:{type: Array},
   created: {type: Date, default: Date.now}
 });
 
@@ -15,6 +18,8 @@ healthTrackSchema.methods.serialize = function() {
     id: this._id,
     weight: this.weight,
     caloriesBurned: this.caloriesBurned,
+    caloriesConsumed: this.caloriesConsumed,
+    meals: this.meals,
     created: this.created
   };
 };

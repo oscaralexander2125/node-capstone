@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
     });
 })
 
-router.post('/', (req, res) => {
+router.post('/', jsonparser, (req, res) => {
   //console.log(req.body);
   const requiredFields = ['weight'];
   for (let i = 0; i < requiredFields.length; i++) {
@@ -41,6 +41,8 @@ router.post('/', (req, res) => {
   HealthTracker.create({
     weight: req.body.weight,
     caloriesBurned: req.body.caloriesBurned,
+    caloriesConsumed: req.body.caloriesConsumed,
+    meals: req.body.meals
   })
   .then(data => res.status(201).json(data.serialize()))
   .catch(err => {

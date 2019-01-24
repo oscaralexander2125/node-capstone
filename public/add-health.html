@@ -6,22 +6,39 @@
   <title>Track Your Day</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
 </head>
-<body>
+<body id="add-health">
   <header role="banner">
     <h2>Track your day</h2>
   </header>
   <section role="region">
     <div class="logger">
       <form class="log-day">
-        <label for="weight" class="weight">Current weight:</label>
-        <input type="number" id="weight">
-        <label for="burned" class="burned">Caloried burned:</label>
-        <input type="number" id="burned">
+        <label for="weight" class="weight">Current weight (in lbs): </label>
+        <input type="number" id="weight" required>
+        <label for="burned" class="burned">Caloried burned: </label>
+        <input type="number" id="burned" required>
+        <label for="consumed" class="consumed">Calories consumed: </label>
+        <input type="number" id="consumed">
+        <div class="add-food">
+          <ul class="meal-list">
+            <li class="meal-1">
+              <label for="meal1" class="meal1">Meal <span class="meal-number">1</span></label>
+              <input type="text" id="meal1">
+            </li>
+          </ul>
+        </div>
         <input type="submit" class="save-day" value="Add Progress">
       </form>
+      <section role="region" class="meal-buttons">
+          <button type="button" class="add-meal">Add meal</button>
+      </section>
     </div>
   </section>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <!--<script src="homepage.js"></script>-->
+  <script src="add.health.js"></script>
 </body>
 </html>
