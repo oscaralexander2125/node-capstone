@@ -8,6 +8,7 @@ const jsonparser = bodyParser.json();
 
 router.get('/', (req, res) => {
   HealthTracker.find()
+    .sort({created: -1})
     .then(records => {
       res.json(records.map(post => post.serialize()));
     })
@@ -60,7 +61,7 @@ router.put('/:id', (req, res) => {
   };
 
   const toUpdate = {};
-  const updateFields = ['weight', 'caloriesBurned'];
+  const updateFields = ['weight', 'caloriesBurned', 'caloriesBurned', 'meals'];
 
   updateFields.forEach(field => {
     if(field in req.body) {
@@ -69,7 +70,7 @@ router.put('/:id', (req, res) => {
   });
   HealthTracker.findByIdAndUpdate(req.body.id, {$set:toUpdate})
     .then(update => {
-      res.status(200).json(update);
+      res.status(200).json(update);//this return for old values
     })
     .catch(err => {res.status(500).json({message: 'Internal server error'})
   });

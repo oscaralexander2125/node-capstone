@@ -63,11 +63,12 @@ function getClientInfoForTheDay() {
     dailyData.created = Date.now;
 
     for(let j=0; j < i; j++) {
-      dailyData.meals.push({
-        meal : $(`#meal${j+1}`).val(),
-      });
+      dailyData.meals.push(
+        $(`#meal${j+1}`).val(),
+      );
     };
-    console.log(dailyData);
+    const mealArray = dailyData.meals.filter(meal => meal !== "");
+    dailyData.meals = mealArray;
     addProgress(dailyData); 
   })  
 };
@@ -87,10 +88,15 @@ function addProgress(updateData) {
     }
     throw new Error(res.statusText);
   })
-  .then(responseJson => console.log(responseJson))
+  .then(() => confirmDataIsAdded())
   .catch(err => {
     console.log(`something went wrong: ${err.message}`)
   });
+}
+
+function confirmDataIsAdded() {
+  $('.confirm-post').html('');
+  $('.confirm-post').html(`<p>Successfully Added! Go to the Progress Page to look at your most recent progress.</p>`);
 }
 
 function runApp() {

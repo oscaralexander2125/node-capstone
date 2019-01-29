@@ -20,7 +20,7 @@ const UserSchema = mongoose.Schema({
 
 UserSchema.methods.serialize = function() {
   return {
-    email: this.username || '',
+    email: this.email || '',
     firstName: this.firstName || '',
     lastName: this.lastName || ''
   };

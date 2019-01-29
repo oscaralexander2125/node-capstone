@@ -7,8 +7,8 @@ mongoose.Promise = global.Promise;
 
 const healthTrackSchema = mongoose.Schema({
   weight: {type: String, required: true},
-  caloriesBurned: String,
-  caloriesConsumed:String,
+  caloriesBurned: {type: String, default: 0},
+  caloriesConsumed:{type: String, default: 0},
   meals:{type: Array},
   created: {type: Date, default: Date.now}
 });

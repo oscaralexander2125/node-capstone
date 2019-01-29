@@ -4,8 +4,14 @@ function renderInputForm() {
   }) 
 };
 
-function runHomepage() {
+function logOut() {
+  $('.logout').on('click', function() {
+    $(location).attr('href', './index.html')
+  })
+}
 
+function runHomepage() {
+  logOut();
 }
 
 $(runHomepage);
