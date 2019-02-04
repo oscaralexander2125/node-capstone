@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  background: url(https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/styles/full_node_image_1090x614/public/media/woman-jumprope-outdoors-1109.jpg?itok=zdQT0kio&timestamp=1492016193) aqua;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.logout {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 0;
+  
+}
+
+p {
+  font-size: 20px;
+}
+
+main {
+  margin: 30px 0;
+}
+
+.buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+a {
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+/*responsive layout*/
+* {
+  box-sizing: border-box;
+}
+
+
+.row {
+  max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+/* Clearfix */
+.row::before,
+.row::after {
+  display: table;
+  content: '';
+}
+
+.row::after {
+  clear: both;
+}
+
+.col-3, .col-4, .col-6, .col-12 {
+  float: left;
+
+  padding-left: 1.04166666%;
+  padding-right: 1.04166666%;
+}
+
+/* Mobile defaults */
+.col-3, .col-4, .col-6, .col-12 {
+  width: 100%;
+}
+
+
+/* Non-mobile, grid */
+@media only screen and (min-width: 640px) {
+
+  .col-3 {
+    width: 25%;
+  }
+
+  .col-4 {
+    width: 33.33%;
+  }
+
+  .col-6 {
+    width: 50%;
+  }
+
+  .col-12 {
+    width: 100%;
+  }
+
+  .logout, h1 {
+    display: inline-block;
+  }
+
+  .logout {
+    float: right;
+    line-height: 67.5px;
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .col-12 {
+    text-align: center;
+  }
+  .page-header {
+    margin-top: 25px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  a {
+    display: block;
+    margin: 30px 15px;
+  }
+}

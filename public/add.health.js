@@ -1,5 +1,22 @@
 let i = 1;
+let token = localStorage.getItem("Bearer");
 
+function fetchCall() {
+  fetch('/api/track', {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    },
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    throw new Error(res.statusText)
+  })
+  .catch(err => {
+    $(location).attr('href', '/index.html');
+  })
+}
 
 function addMeal() {
   $('.add-meal').on('click', function() {
@@ -56,11 +73,21 @@ function getClientInfoForTheDay() {
     event.preventDefault();
     console.log('something happens in fetch function');
     const dailyData = {};
+    const inputDate = $('#date').val()+'T12:24:00';
+    const date = new Date(inputDate);
+    const finalDate = date.toISOString();
     dailyData.weight = $('#weight').val();
-    dailyData.caloriesBurned = $('#burned').val();
-    dailyData.caloriesConsumed = $('#consumed').val();
+    dailyData.date = finalDate;
+    if ($('#burned').val() !== '') {
+      dailyData.caloriesBurned = $('#burned').val();
+    }
+
+    if ($('#consumed').val() !== '') {
+      dailyData.caloriesConsumed = $('#consumed').val();
+    }
+    
     dailyData.meals = [];
-    dailyData.created = Date.now;
+    //dailyData.created = Date.now;
 
     for(let j=0; j < i; j++) {
       dailyData.meals.push(
@@ -74,11 +101,12 @@ function getClientInfoForTheDay() {
 };
 
 function addProgress(updateData) {
-  console.log('something happens in fetch function');
+  console.log('something happens in fetch function ');
   fetch ('/api/track', {
     method: 'POST',
     headers:{
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify(updateData)
   })
@@ -88,9 +116,12 @@ function addProgress(updateData) {
     }
     throw new Error(res.statusText);
   })
-  .then(() => confirmDataIsAdded())
+  .then(responseJson => {
+    confirmDataIsAdded();
+    $(location).attr('href', '/progress-page.html')
+  })
   .catch(err => {
-    console.log(`something went wrong: ${err.message}`)
+    renderError(`${err.message}`)
   });
 }
 
@@ -99,10 +130,16 @@ function confirmDataIsAdded() {
   $('.confirm-post').html(`<p>Successfully Added! Go to the Progress Page to look at your most recent progress.</p>`);
 }
 
+function renderError(error) {
+  $('.display-error').html('');
+  $('display-error').html(`<p>${error}</p>`);
+}
+
 function runApp() {
   addMeal();
   removeMeal();
   getClientInfoForTheDay();
+  fetchCall();
 }
 
 $(runApp);

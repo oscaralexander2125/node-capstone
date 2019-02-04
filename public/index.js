@@ -1,15 +1,18 @@
+let email;
+let aToken;
+
 function loginUser() {
   console.log('hello');
   $('.login-form').on('submit', function(event) {
     event.preventDefault();
     const userInfo = {};
-    userInfo.email = $('#email').val();
+    userInfo.username = $('#email').val();
     userInfo.password = $('#password').val();
-    redirectHomepage(userInfo);
+    directHomepage(userInfo);
   })
 }
 
-function redirectHomepage(userCreds) {
+function directHomepage(userCreds) {
   fetch('/api/auth/login', {
     method: 'POST',
     headers: {
@@ -24,7 +27,12 @@ function redirectHomepage(userCreds) {
     throw new Error(res.statusText);
   })
   .then(responseJson => {
-    
+    //aToken = responseJson.authToken
+    localStorage.setItem("Bearer", responseJson.authToken)
+    $(location).attr('href', '/homepage.html');
+  })
+  .catch(err => {
+    loginError(err);
   })
 }
 
@@ -36,8 +44,8 @@ function registerUser() {
     newUser.firstName = $('#firstName').val();
     newUser.lastName = $('#lastName').val();
     if($('#register-password').val() !== $('#confirm-password').val()) {
-      $('.error-message').html('');
-      $('.error-message').html(`<p>Passwords must match.</p>`)
+      $('.register-error').html('');
+      $('.register-error').html(`<p>Passwords must match.</p>`)
     }
     else {
       newUser.password = $('#confirm-password').val();
@@ -63,11 +71,24 @@ function createUser(user) {
     throw new Error(res.statusText)
   })
   .then(() => {
-    $(location).attr('href', './homepage.html')
+    const userCred = {};
+    userCred.username = user.email;
+    userCred.password = user.password;
+    directHomepage(userCred);
   })
   .catch(err => {
-    console.log(`Something went wrong: ${err.message}`)
+    signUpError(err)
   });
+}
+
+function loginError(error) {
+  $('.login-error').html('');
+  $('.login-error').append(`Email or password incorrect.`);
+}
+
+function signUpError(error) {
+  $('.register-error').html('');
+  $('.register-error').html(`<p>${error}</p>`);
 }
 
 function runLoginPage() {

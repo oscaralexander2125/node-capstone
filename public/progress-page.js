@@ -1,7 +1,13 @@
+let token = localStorage.getItem("Bearer");
+let findId;
 
 
 function getData() {
-  return fetch('/api/track')
+  return fetch('/api/track', {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
     .then(res => {
       if(res.ok) {
         return res.json();
@@ -12,7 +18,11 @@ function getData() {
 
 function getProgressData() {
   //will be used to get data from api
-  fetch('/api/track')
+  fetch('/api/track', {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    },
+  })
   .then(res => {
     if(res.ok) {
       return res.json();
@@ -22,22 +32,45 @@ function getProgressData() {
   .then(responseJson => displayProgress(responseJson))
   .catch(err => {
     console.log(`Something went wrong: ${err.message}`);
+    $(location).attr('href', '/index.html');
   });
 }
 
 //will need at add calories burned and consumed and meal to the real api
 function displayProgress(data) {
-  console.log(data);
+  let date;
+  let finalDate;
+  $('.day').html('');
   let idValue;
-  for (let i = 0; i < 7; i++) {
-    $('.day').append(`Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
-    for (let j=0; j < data[i].meals.length; j++) {
-      $('.day').append(`Meal ${j+1}: ${data[i].meals[j]} <br />`);
+
+  if(data.length===0) {
+    console.log('nothing added yet');
+  }
+  else if (data.length <8) {
+    for (let i = 0; i < data.length; i++) {
+      date = new Date(data[i].date);
+      finalDate = date.toLocaleDateString();
+      $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
+      for (let j=0; j < data[i].meals.length; j++) {
+        $('.day').append(`Meal ${j+1}: ${data[i].meals[j]} <br />`);
+      }
+      idValue = data[i].id;
+      $('.day').append(`<button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
+      $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button><br />`);
     }
-    idValue = data[i].id;
-    $('.day').append(`<button type="button" class="edit-form" onClick ="saveEditForm(${idValue})">Edit</button>`);
-    $('.day').append(`<button type="button" class="delete-form">Delete</button><br />`);
-    console.log(typeof data[i].id);
+  }
+  else {
+    for (let i = 0; i < 8; i++) {
+      date = new Date(data[i].date);
+      finalDate = date.toLocaleDateString();
+      $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
+      for (let j=0; j < data[i].meals.length; j++) {
+        $('.day').append(`Meal ${j+1}: ${data[i].meals[j]} <br />`);
+      }
+      idValue = data[i].id;
+      $('.day').append(`<button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
+      $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button><br />`);
+    }
   }
 };
 
@@ -52,51 +85,62 @@ function lastSevenDays() {
 
 function lastThirtyDays() {
   $('.30-days').on('click', function() {
+    console.log('30 day button');
+    let date;
+    let finalDate;
     getData()
     .then(data => {
       $('.day').html('');
       if(data.length < 30) {
         for (let k = 0; k < data.length; k++) {
-          $('.day').append(`Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+          date = new Date(data[k].date);
+          finalDate = date.toLocaleDateString();
+          $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
           for (let j=0; j < data[k].meals.length; j++) {
             $('.day').append(`Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
-          $('.day').append(`<button type="button" class="edit-form-${k}" onclick="saveEditForm(${data[k].id})">Edit</button>`);
-          $('.day').append(`<button type="button" class="delete-form">Delete</button><br />`);
+          $('.day').append(`<button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
+          $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button><br />`);
         }
       } else {
         for (let k = 0; k < 30; k++) {
-          $('.day').append(`Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+          date = new Date(data[k].date);
+          finalDate = date.toLocaleDateString();
+          $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
           for (let j=0; j < data[k].meals.length; j++) {
             $('.day').append(`Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
-          $('.day').append(`<button type="button" class="edit-form-${k}" onClick ="saveEditForm(${data[k].id})">Edit</button>`);
-          $('.day').append(`<button type="button" class="delete-form">Delete</button><br />`);
+          $('.day').append(`<button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
+          $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button><br />`);
         }
       }
     })
     .catch(err => {
-      console.log(`Something went wrong: ${err.message}`);
+      displayHealthRecordError(`${err}`);
     });
   });
 }
 
 function allDays() {
   $('.all-days').on('click', function() {
+    console.log('all day button');
+    
     getData()
     .then(data => {
       $('.day').html('');
       for (let k = 0; k < data.length; k++) {
-        $('.day').append(`Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+        date = new Date(data[k].date);
+        finalDate = date.toLocaleDateString();
+        $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
         for (let j=0; j < data[k].meals.length; j++) {
           $('.day').append(`Meal ${j+1}: ${data[k].meals[j]} <br />`);
         }
-        $('.day').append(`<button type="button" class="edit-form" onclick ="saveEditForm(${data[k].id})">Edit</button>`);
-        $('.day').append(`<button type="button" class="delete-form">Delete</button><br />`);
+        $('.day').append(`<button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
+        $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button><br />`);
       }
     })
     .catch(err => {
-      console.log(`Something went wrong: ${err.message}`);
+      displayHealthRecordError(`${err}`);
     });
   });
 }
@@ -106,38 +150,53 @@ function editForm() {
     $('header').hide();
     $('.buttons').hide();
     $('.display-progress').hide();
-    renderEditForm();
+    //renderEditForm();
   })
 }
 
-function renderEditForm() {
-  $('main').html(`<section role = "region" class = "edit-page">
-  <form class = "edit-form">
-    <legend>Edit Day</legent>
-    <label for = "weight">Weight: </label>
-    <input type="number" id="weight" />
-    <label for="burned" class="burned">Caloried burned: </label>
-    <input type="number" id="burned" />
-    <label for="consumed" class="consumed">Calories consumed: </label>
-    <input type="number" id="consumed">
-    <div class="add-food">
-      <ul class="meal-list">
-        <li class="meal-1">
-          <label for="meal1" class="meal1">Meal <span class="meal-number">1</span></label>
-          <input type="text" id="meal1">
-        </li>
-      </ul>
-    </div>
-    <input type="submit" class="save-edit" value="Save">
-    <button type="button" class="go-back">Go Back</button>
-  </form>
-  <section role="region" class="meal-buttons">
-    <button type="button" class="add-meal">Add meal</button>
-  </section>
-</section>`)
+function renderEditForm(data) {
+  const editData = [data];
+  console.log(editData);
+
+  for (let i = 0; i < editData.length; i++) {
+    $('main').html(`<section role = "region" class = "edit-page">
+      <div class = "edit-error"></div>
+      <form class = "edit-form">
+        <legend>Edit Day</legent>
+        <label for = "weight">Weight: </label>
+        <input type="number" id="weight" value = ${data.weight} />
+        <label for="burned" class="burned">Caloried burned: </label>
+        <input type="number" id="burned" value = ${data.caloriesBurned} />
+        <label for="consumed" class="consumed">Calories consumed: </label>
+        <input type="number" id="consumed" value=${data.caloriesConsumed} />
+        <div class="add-food">
+          <ul class="meal-list">
+          </ul>
+        </div>
+        <input type="submit" class="save-edit" value="Save">
+        <button type="button" class="go-back">Go Back</button>
+      </form>
+      <section role="region" class="meal-buttons">
+        <button type="button" class="add-meal">Add meal</button>
+      </section>
+    </section>`)
+    for (let k = 0; k< data.meals.length; k++) {
+      $('.meal-list').append(`<li class ="meal-${k+1}">
+        <label for ="meal${k+1}" class="meal${k+1}">Meal
+        <span class = "meal-number">${k+1}</span>
+        </label>
+        <input type = "text" id="meal${k+1}" value = "${data.meals[k]}" />
+      </li>`)
+    }
+  }
+  if(data.meals.length>0) {
+    $('.meal-buttons').append(`<button type="button" class="remove-meal">Remove meal</button>`)
+  }
+  l=data.meals.length;
+  console.log(l);
 }
 
-let l = 1;
+let l;
 
 
 function addMeal() {
@@ -155,19 +214,25 @@ function addMeal() {
     else {
       console.log('max of 7 meals');
     }
+    if(l>=8) {
+      l=7;
+    }
   })
 };
 
 function renderRemoveButton(i) {
   console.log(l + 'from remove button');
-  if(l===1) {
+  if(l===0) {
     $('.remove-meal').remove();
     $('.meal-buttons').append(`<button type="button" class="remove-meal">Remove meal</button>`)
   } 
 };
 
 function addMealNumber() {
-  l+=1;
+  if(l<8) {
+    l+=1;
+    console.log(l)
+  }
 };
 
 function removeMeal() {
@@ -190,7 +255,36 @@ function iPositive() {
   }
 }
 
+function getIdValue(id) {
+  getDayId(id)
+  .then(responseJson => {
+    return responseJson[id].id;
+  })
+  .then(editId => {
+    saveEditForm(editId);//this is the id number for the item that is clicked
+  })
+  .catch(err => {
+    $(location).attr('href', '/progress-page.html');
+    displayHealthRecordError(err);
+  });
+}
+
+function getDayId(id) {
+  return fetch('/api/track', {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    throw new Error(res.statusText);
+  })
+}
+
 function saveEditForm(id) {
+  getIndividualItem(id);
   console.log(id);
   $('main').on('submit', function(event) {
     event.preventDefault();
@@ -206,26 +300,27 @@ function saveEditForm(id) {
       updateData.caloriesConsumed = $('#consumed').val();
     }
     updateData.meals = [];
-    updateData.created = Date.now;
-    updateData.id = id;
 
-    for(let j=0; j < i; j++) {
+    for(let j=0; j < l; j++) {
       updateData.meals.push(
         $(`#meal${j+1}`).val(),
       );
     };
     const mealArray = updateData.meals.filter(meal => meal !== "");
     updateData.meals = mealArray;
+    updateData.id = id;
     console.log(updateData);
     updateProgress(updateData);
   })
 };
 
 function updateProgress(updated) {
+  console.log(updated)
   fetch(`/api/track/${updated.id}`, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify(updated)
   })
@@ -235,14 +330,76 @@ function updateProgress(updated) {
     }
     throw new Error(res.statusText);
   })
-  .then(response => console.log('success: ' + response))
-  .catch(err => console.log(err));
+  .then(response => {
+    $(location).attr('href', '/progress-page.html')
+  })
+  .catch(err => {
+    displayEditFormError(err);
+    //display something on screen if PUT has error
+  });
+}
+
+function getIndividualItem(id) {
+  return fetch(`/api/track/${id}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json()
+    }
+    throw new Error(res.statusText);
+  })
+  .then(responseJson => {
+    renderEditForm(responseJson);
+  })
 }
 
 function dontEdit() {
   $('main').on('click', '.go-back', function() {
     $(location).attr('href', './progress-page.html');
   })
+}
+
+function findDayToDelete(id) {
+  getDayId()
+  .then(responseJson => {
+    return responseJson[id].id;
+  })
+  .then(deleteItem => {
+    deleteDay(deleteItem);
+    console.log(deleteItem)
+  })
+  .catch(err => {
+    displayHealthRecordError(err);
+  });
+}
+
+function deleteDay(itemId) {
+  fetch(`/api/track/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    },
+  })
+  .then(res => {
+    if(res.ok) {
+      return getProgressData();
+    }
+    throw new Error(res.statusText)
+  })
+  .catch(err => displayHealthRecordError(err));
+}
+
+function displayHealthRecordError(error) {
+  $('.error-display').html('');
+  $('.error-display').html(`<p>Oops! ${error.message}`);
+}
+
+function displayEditFormError(error) {
+  $('.edit-error').html('');
+  $('.edit-error').html(`<p>Oops! ${error.message}`);
 }
 
 function runProgressPage() {

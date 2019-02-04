@@ -5,24 +5,39 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Homepage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="homepage.css" />
 </head>
 <body id="homepage">
   <header role="banner">
-    <h2>Welcome</h2>
-    <button type="button" class="logout">Log Out</button>
+    <div class="row">
+      <div class="col-12 page-header">
+        <h1>Welcome</h1>
+        <button type="button" class="logout">Log Out</button>
+      </div>
+    </div>
   </header>
   <main role="main">
-    <p>this app is user-friendly. To add your daily habits, just click on add daily routine.</p>
-    <p>Interested in knowing how many calories your body burns per day? Just click on calcute body req to find out. 
-      Just add your weight and body fat percentage to know your caloric needs.
-    </p>
-    <a href="add-health.html">
-      <button type="button" class="input-daily">Add daily routine</button>
-    </a>
-    <a href="progress-page.html">
-      <button type="button" class="progress-js">Analyze Progress</button>
-    </a>
+    <section role="region">
+      <div class="row">
+        <div class="col-12">
+          <p class="description">This app is user-friendly. To add your daily routine, just click on add daily routine. Click on Analyze Progress to take a look at your most recent progress or make some corrections.</p>
+        </div>
+      </div>
+    </section>
+    <section role="region">
+      <div class="row">
+        <div class="col-12">
+          <div class="buttons">
+            <a href="add-health.html">
+                <button type="button" class="input-daily">Add daily routine</button>
+              </a>
+              <a href="progress-page.html">
+                <button type="button" class="progress-js">Analyze Progress</button>
+              </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

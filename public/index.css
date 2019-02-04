@@ -1,0 +1,142 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  background: url(https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/styles/full_node_image_1090x614/public/media/woman-jumprope-outdoors-1109.jpg?itok=zdQT0kio&timestamp=1492016193) aqua;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+main {
+  font-size: 0;
+  margin-bottom: 30px;
+}
+
+.login-info, .register-info {
+  display: inline-block;
+}
+
+header {
+  text-align: center;
+}
+
+label {
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+input[type=text], input[type=email], input[type=password] {
+  border: none;
+  border-radius: 3px;
+  padding: 6px 7px;
+  font-size: 16px;
+  margin: 7px 0;
+}
+
+input[type=submit] {
+  margin-top: 10px;
+}
+
+.login-error, .register-error {
+  font-size: 16px;
+  color: rgb(250, 99, 99);
+}
+
+
+
+/* responsive layout*/
+
+* {
+  box-sizing: border-box;
+}
+
+
+ .row {
+  max-width: 700px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+/* Clearfix */
+.row::before,
+.row::after {
+  display: table;
+  content: '';
+}
+
+.row::after {
+  clear: both;
+}
+
+.col-3, .col-4, .col-6, .col-12 {
+  float: left;
+
+  /* Gutters:
+   * Each column is padded by half-a-gutter on each side,
+   *
+   * Half a gutter is 10px, 10/960 (context) = 1.041666%
+   *
+   */
+  padding-left: 1.04166666%;
+  padding-right: 1.04166666%;
+}
+
+/* Mobile defaults */
+.col-3, .col-4, .col-6, .col-12 {
+  width: 100%;
+}
+
+
+/* Non-mobile, grid */
+@media only screen and (min-width: 641px) {
+  /* 3 columns, 3/12 in % */
+  .col-3 {
+    width: 25%;
+  }
+
+  /* 4 columns, 4/12 in % */
+  .col-4 {
+    width: 33.33%;
+  }
+
+  /* 6 columns 6/12 in % */
+  .col-6 {
+    width: 50%;
+  }
+
+  /* 12 columns, 12/12 */
+  .col-12 {
+    width: 100%;
+  }
+
+  section {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .login-sect {
+    float: right;
+  }
+
+  .register {
+    float: left;
+  }
+
+  .new-user {
+    width: 125px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  section {
+    display: block;
+    text-align: center;
+  }
+
+
+}

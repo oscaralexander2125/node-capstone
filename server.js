@@ -36,6 +36,10 @@ app.use('/api/track', trackerRoute);
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRouter);
 
+app.get('/api/check', jwtAuth, (req, res) => {
+  res.json({message: 'youre authorized'})
+})
+
 
 let server;
 
