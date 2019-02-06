@@ -50,26 +50,34 @@ function displayProgress(data) {
     for (let i = 0; i < data.length; i++) {
       date = new Date(data[i].date);
       finalDate = date.toLocaleDateString();
-      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight} lbs<br /> Calories expended: ${data[i].caloriesBurned} kcal<br /> Caloric intake: ${data[i].caloriesConsumed} kcal<br />`);
+      $('.js-days').append(`<div class="col-3 add-days">
+      <div class="day day-${i}">
+        <p>Date: ${finalDate}<br /> Weight: ${data[i].weight} lbs<br /> Calories expended: ${data[i].caloriesBurned} kcal<br /> Caloric intake: ${data[i].caloriesConsumed} kcal<br />
+      </div>
+    </div>`);
       for (let j=0; j < data[i].meals.length; j++) {
-        $('.day').append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
+        $(`.day-${i}`).append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
       }
       idValue = data[i].id;
-      $('.day').append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
-      $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button></p><br />`);
+      $(`.day-${i}`).append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
+      $(`.day-${i}`).append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button></p><br />`);
     }
   }
   else {
     for (let i = 0; i < 8; i++) {
       date = new Date(data[i].date);
       finalDate = date.toLocaleDateString();
-      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight} lbs<br /> Calories expended: ${data[i].caloriesBurned} kcal<br /> Caloric intake: ${data[i].caloriesConsumed} kcal<br />`);
+      $('.js-days').append(`<div class="col-3 add-days">
+      <div class="day day-${i}">
+        <p>Date: ${finalDate}<br /> Weight: ${data[i].weight} lbs<br /> Calories expended: ${data[i].caloriesBurned} kcal<br /> Caloric intake: ${data[i].caloriesConsumed} kcal<br />
+      </div>
+    </div>`);
       for (let j=0; j < data[i].meals.length; j++) {
-        $('.day').append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
+        $(`.day-${i}`).append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
       }
       idValue = data[i].id;
-      $('.day').append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
-      $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button></p><br />`);
+      $(`.day-${i}`).append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
+      $(`.day-${i}`).append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button></p><br />`);
     }
   }
 };
@@ -77,7 +85,7 @@ function displayProgress(data) {
 function lastSevenDays() {
   console.log('seven days function wired');
   $('.7-days').on('click', function() {
-    $('.day').html('');
+    $('.js-days').html('');
     getProgressData();
   });
 }
@@ -90,28 +98,36 @@ function lastThirtyDays() {
     let finalDate;
     getData()
     .then(data => {
-      $('.day').html('');
+      $('.js-days').html('');
       if(data.length < 30) {
         for (let k = 0; k < data.length; k++) {
           date = new Date(data[k].date);
           finalDate = date.toLocaleDateString();
-          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />`)
+          $('.js-days').append(`<div class="col-3 add-days">
+          <div class="day day-${k}">
+            <p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />
+          </div>
+        </div>`)
           for (let j=0; j < data[k].meals.length; j++) {
-            $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
+            $(`.day-${k}`).append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
-          $('.day').append(`<p class="edit-button"><button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
-          $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
+          $(`.day-${k}`).append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
+          $(`.day-${k}`).append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
         }
       } else {
         for (let k = 0; k < 30; k++) {
           date = new Date(data[k].date);
           finalDate = date.toLocaleDateString();
-          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />`)
+          $('.js-days').append(`<div class="col-3 add-days">
+          <div class="day day-${k}">
+            <p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />
+          </div>
+        </div>`)
           for (let j=0; j < data[k].meals.length; j++) {
-            $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
+            $(`.day-${k}`).append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
-          $('.day').append(`<p class="edit-button"><button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
-          $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
+          $(`.day-${k}`).append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
+          $(`.day-${k}`).append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
         }
       }
     })
@@ -127,16 +143,20 @@ function allDays() {
     
     getData()
     .then(data => {
-      $('.day').html('');
+      $('.js-days').html('');
       for (let k = 0; k < data.length; k++) {
         date = new Date(data[k].date);
         finalDate = date.toLocaleDateString();
-        $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />`)
-        for (let j=0; j < data[k].meals.length; j++) {
-          $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
-        }
-        $('.day').append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
-        $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
+        $('.js-days').append(`<div class="col-3 add-days">
+          <div class="day day-${k}">
+            <p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />
+          </div>
+        </div>`)
+          for (let j=0; j < data[k].meals.length; j++) {
+            $(`.day-${k}`).append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
+          }
+          $(`.day-${k}`).append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
+          $(`.day-${k}`).append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
       }
     })
     .catch(err => {
@@ -145,16 +165,17 @@ function allDays() {
   });
 }
 function editForm() {
-  $('.day').on('click', '.edit-form', function() {
+  //$('.js-days').on('click', '.edit-form', function() {
     //console.log(dayId);
-    $('header').hide();
+    //$('header').hide();
     $('.buttons').hide();
     $('.display-progress').hide();
     //renderEditForm();
-  })
+  //})
 }
 
 function renderEditForm(data) {
+  editForm();
   const editData = [data];
   console.log(editData);
 
@@ -164,35 +185,33 @@ function renderEditForm(data) {
       <div class="col-12">
         <div class="edit-section">
           <form class = "edit-form">
-          <fieldset>Edit Day</fieldset><br />
-        <div class="col-12 inputs-2">
-          <label for = "weight">Weight: </label>
-          <input type="number" id="weight" value = ${data.weight} />
-          <label for="burned" class="burned">Caloried burned: </label>
-          <input type="number" id="burned" value = ${data.caloriesBurned} />
-        </div>
-        <div class="col-12">
-          <label for="consumed" class="consumed">Calories consumed: </label>
-          <input type="number" id="consumed" value=${data.caloriesConsumed} />
-        </div>
+            <fieldset>Edit Day</fieldset><br />
+            <div class="col-12 inputs-2">
+              <label for = "weight">Weight: </label>
+              <input type="number" id="weight" value = ${data.weight} />
+              <label for="burned" class="burned">Caloried burned: </label>
+              <input type="number" id="burned" value = ${data.caloriesBurned} />
+            </div>
+            <div class="col-12">
+              <label for="consumed" class="consumed">Calories consumed: </label>
+              <input type="number" id="consumed" value=${data.caloriesConsumed} />
+            </div>
+            <div class = "edit-error"></div>
+              <div class="add-food">
+                <ul class="meal-list">
+                </ul>
+              </div>
+            <div class ="col-12 save-button">
+              <input type="submit" class="save-edit" value="Save">
+              <button type="button" class="go-back">Go Back</button>
+            </div>
+          </form>
+          <section role="region" class="meal-buttons">
+            <button type="button" class="add-meal">Add meal</button>
+          </section>
         </div>
       </div>
-      <div class = "edit-error"></div>
-      <div class="col-12">
-        <div class="add-food">
-          <ul class="meal-list">
-          </ul>
-        </div>
-      </div>
-      <div class ="col-12 save-button">
-        <input type="submit" class="save-edit" value="Save">
-        <button type="button" class="go-back">Go Back</button>
-      </div>
-    </form>
     </div>
-    <section role="region" class="meal-buttons">
-      <button type="button" class="add-meal">Add meal</button>
-    </section>
   </section>`)
     for (let k = 0; k< data.meals.length; k++) {
       $('.meal-list').append(`<li class ="meal-${k+1}">
@@ -418,7 +437,7 @@ function displayEditFormError(error) {
 
 function runProgressPage() {
   getProgressData();
-  editForm();
+  //editForm();
   dontEdit();
   //saveEditForm();
   addMeal();

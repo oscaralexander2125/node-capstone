@@ -30,11 +30,11 @@
     </section>
     <section role="region" class="display-progress">
       <div class="row js-days">
-        <div class="col-12 add-days">
-          <div class="day">
+        <!--<div class="col-3 add-days">
+          <div class="day day-${i}">
             
           </div>
-        </div>
+        </div>-->
       </div>
     </section>
   </main>
@@ -47,32 +47,38 @@
 
 
 <!--
+
+
 <section role = "region" class = "edit-page">
   <div class="row">
     <div class="col-12">
       <div class="edit-section">
         <form class = "edit-form">
-        <legend>Edit Day</legent><br />
-        <label for = "weight">Weight: </label>
-        <input type="number" id="weight" value = ${data.weight} />
-        <label for="burned" class="burned">Caloried burned: </label>
-        <input type="number" id="burned" value = ${data.caloriesBurned} />
-        <label for="consumed" class="consumed">Calories consumed: </label>
-        <input type="number" id="consumed" value=${data.caloriesConsumed} />
+          <fieldset>Edit Day</fieldset><br />
+          <div class="col-12 inputs-2">
+            <label for = "weight">Weight: </label>
+            <input type="number" id="weight" value = ${data.weight} />
+            <label for="burned" class="burned">Caloried burned: </label>
+            <input type="number" id="burned" value = ${data.caloriesBurned} />
+          </div>
+          <div class="col-12">
+            <label for="consumed" class="consumed">Calories consumed: </label>
+            <input type="number" id="consumed" value=${data.caloriesConsumed} />
+          </div>
+          <div class = "edit-error"></div>
+            <div class="add-food">
+              <ul class="meal-list">
+              </ul>
+            </div>
+          <div class ="col-12 save-button">
+            <input type="submit" class="save-edit" value="Save">
+            <button type="button" class="go-back">Go Back</button>
+          </div>
+        </form>
+        <section role="region" class="meal-buttons">
+          <button type="button" class="add-meal">Add meal</button>
+        </section>
       </div>
     </div>
-    <div class = "edit-error"></div>
-    <div class="col-12">
-      <div class="add-food">
-        <ul class="meal-list">
-        </ul>
-      </div>
-    </div>
-    <input type="submit" class="save-edit" value="Save">
-    <button type="button" class="go-back">Go Back</button>
-  </form>
   </div>
-  <section role="region" class="meal-buttons">
-    <button type="button" class="add-meal">Add meal</button>
-  </section>
 </section>-->
