@@ -5,9 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Your Progress</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="progress-page.css" />
 </head>
 <body>
+  <div class="background"></div>
   <header role="banner">
     <div class="row">
         <div class="col-12">
@@ -19,13 +20,17 @@
     </header>
   <main role="main">
     <section role="region" class="buttons">
-      <button type="button" class="7-days">Last 7 Days</button>
-      <button type="button" class="30-days">Last 30 Days</button>
-      <button type="button" class="all-days">All</button>
+      <div class="row">
+        <div class="col-12">
+          <button type="button" class="7-days">Last 7 Days</button>
+          <button type="button" class="30-days">Last 30 Days</button>
+          <button type="button" class="all-days">All</button>
+        </div>
+      </div>
     </section>
     <section role="region" class="display-progress">
-      <div class="row">
-        <div class="col-3">
+      <div class="row js-days">
+        <div class="col-12 add-days">
           <div class="day">
             
           </div>
@@ -39,3 +44,35 @@
   <script src="progress-page.js"></script>
 </body>
 </html>
+
+
+<!--
+<section role = "region" class = "edit-page">
+  <div class="row">
+    <div class="col-12">
+      <div class="edit-section">
+        <form class = "edit-form">
+        <legend>Edit Day</legent><br />
+        <label for = "weight">Weight: </label>
+        <input type="number" id="weight" value = ${data.weight} />
+        <label for="burned" class="burned">Caloried burned: </label>
+        <input type="number" id="burned" value = ${data.caloriesBurned} />
+        <label for="consumed" class="consumed">Calories consumed: </label>
+        <input type="number" id="consumed" value=${data.caloriesConsumed} />
+      </div>
+    </div>
+    <div class = "edit-error"></div>
+    <div class="col-12">
+      <div class="add-food">
+        <ul class="meal-list">
+        </ul>
+      </div>
+    </div>
+    <input type="submit" class="save-edit" value="Save">
+    <button type="button" class="go-back">Go Back</button>
+  </form>
+  </div>
+  <section role="region" class="meal-buttons">
+    <button type="button" class="add-meal">Add meal</button>
+  </section>
+</section>-->

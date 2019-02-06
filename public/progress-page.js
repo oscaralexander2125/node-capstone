@@ -160,26 +160,40 @@ function renderEditForm(data) {
 
   for (let i = 0; i < editData.length; i++) {
     $('main').html(`<section role = "region" class = "edit-page">
+    <div class="row">
+      <div class="col-12">
+        <div class="edit-section">
+          <form class = "edit-form">
+          <fieldset>Edit Day</fieldset><br />
+        <div class="col-12 inputs-2">
+          <label for = "weight">Weight: </label>
+          <input type="number" id="weight" value = ${data.weight} />
+          <label for="burned" class="burned">Caloried burned: </label>
+          <input type="number" id="burned" value = ${data.caloriesBurned} />
+        </div>
+        <div class="col-12">
+          <label for="consumed" class="consumed">Calories consumed: </label>
+          <input type="number" id="consumed" value=${data.caloriesConsumed} />
+        </div>
+        </div>
+      </div>
       <div class = "edit-error"></div>
-      <form class = "edit-form">
-        <legend>Edit Day</legent>
-        <label for = "weight">Weight: </label>
-        <input type="number" id="weight" value = ${data.weight} />
-        <label for="burned" class="burned">Caloried burned: </label>
-        <input type="number" id="burned" value = ${data.caloriesBurned} />
-        <label for="consumed" class="consumed">Calories consumed: </label>
-        <input type="number" id="consumed" value=${data.caloriesConsumed} />
+      <div class="col-12">
         <div class="add-food">
           <ul class="meal-list">
           </ul>
         </div>
+      </div>
+      <div class ="col-12 save-button">
         <input type="submit" class="save-edit" value="Save">
         <button type="button" class="go-back">Go Back</button>
-      </form>
-      <section role="region" class="meal-buttons">
-        <button type="button" class="add-meal">Add meal</button>
-      </section>
-    </section>`)
+      </div>
+    </form>
+    </div>
+    <section role="region" class="meal-buttons">
+      <button type="button" class="add-meal">Add meal</button>
+    </section>
+  </section>`)
     for (let k = 0; k< data.meals.length; k++) {
       $('.meal-list').append(`<li class ="meal-${k+1}">
         <label for ="meal${k+1}" class="meal${k+1}">Meal

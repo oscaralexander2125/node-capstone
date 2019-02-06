@@ -1,10 +1,11 @@
 body {
   margin: 0;
-  background: url(https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/styles/full_node_image_1090x614/public/media/woman-jumprope-outdoors-1109.jpg?itok=zdQT0kio&timestamp=1492016193) aqua;
+  background: linear-gradient( rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.6) ), url(https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/styles/full_node_image_1090x614/public/media/woman-jumprope-outdoors-1109.jpg?itok=zdQT0kio&timestamp=1492016193) aqua;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color: rgb(52, 119, 219);
 }
 
 .logout {
@@ -14,7 +15,9 @@ body {
   overflow: hidden;
   outline: none;
   padding: 0;
-  
+  font-size: 16px;
+  text-decoration: underline;
+  color: rgb(42, 42, 255);
 }
 
 p {
@@ -28,6 +31,22 @@ main {
 .buttons {
   text-align: center;
   margin-top: 30px;
+}
+
+button {
+  margin: 0 10px;
+  padding: 5px;
+  border: 2px solid #577ba5;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: rgb(52, 119, 219);
+  transition: .3s;
+}
+
+button:hover {
+  cursor: pointer;
+  color: rgb(0, 81, 202);
+  background-color: #c2c0c0;
 }
 
 a {
@@ -97,7 +116,7 @@ a {
 
   .logout {
     float: right;
-    line-height: 67.5px;
+    line-height: 80px;
   }
 }
 

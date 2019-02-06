@@ -30,7 +30,8 @@ function addMeal() {
       console.log(i);
     }
     else {
-      console.log('max of 7 meals');
+      i=7;
+
     }
   })
 };
@@ -57,7 +58,12 @@ function removeMeal() {
 }
 
 function removeMealNumber() {
-  i-=1;
+  if(i<8) {
+    i-=1;    
+  }
+  if (i>=8) {
+    i=7;
+  }
 }
 
 function iPositive() {
