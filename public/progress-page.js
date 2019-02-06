@@ -50,26 +50,26 @@ function displayProgress(data) {
     for (let i = 0; i < data.length; i++) {
       date = new Date(data[i].date);
       finalDate = date.toLocaleDateString();
-      $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
+      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
       for (let j=0; j < data[i].meals.length; j++) {
-        $('.day').append(`Meal ${j+1}: ${data[i].meals[j]} <br />`);
+        $('.day').append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
       }
       idValue = data[i].id;
-      $('.day').append(`<button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
-      $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button><br />`);
+      $('.day').append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
+      $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button></p><br />`);
     }
   }
   else {
     for (let i = 0; i < 8; i++) {
       date = new Date(data[i].date);
       finalDate = date.toLocaleDateString();
-      $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
+      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
       for (let j=0; j < data[i].meals.length; j++) {
-        $('.day').append(`Meal ${j+1}: ${data[i].meals[j]} <br />`);
+        $('.day').append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
       }
       idValue = data[i].id;
-      $('.day').append(`<button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
-      $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button><br />`);
+      $('.day').append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${i})">Edit</button>`);
+      $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${i})">Delete</button></p><br />`);
     }
   }
 };
@@ -95,23 +95,23 @@ function lastThirtyDays() {
         for (let k = 0; k < data.length; k++) {
           date = new Date(data[k].date);
           finalDate = date.toLocaleDateString();
-          $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
           for (let j=0; j < data[k].meals.length; j++) {
-            $('.day').append(`Meal ${j+1}: ${data[k].meals[j]} <br />`);
+            $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
-          $('.day').append(`<button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
-          $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button><br />`);
+          $('.day').append(`<p class="edit-button"><button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
+          $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
         }
       } else {
         for (let k = 0; k < 30; k++) {
           date = new Date(data[k].date);
           finalDate = date.toLocaleDateString();
-          $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
           for (let j=0; j < data[k].meals.length; j++) {
-            $('.day').append(`Meal ${j+1}: ${data[k].meals[j]} <br />`);
+            $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
-          $('.day').append(`<button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
-          $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button><br />`);
+          $('.day').append(`<p class="edit-button"><button type="button" class="edit-form-${k}" onClick ="getIdValue(${k})">Edit</button>`);
+          $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
         }
       }
     })
@@ -131,12 +131,12 @@ function allDays() {
       for (let k = 0; k < data.length; k++) {
         date = new Date(data[k].date);
         finalDate = date.toLocaleDateString();
-        $('.day').append(`Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+        $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
         for (let j=0; j < data[k].meals.length; j++) {
-          $('.day').append(`Meal ${j+1}: ${data[k].meals[j]} <br />`);
+          $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
         }
-        $('.day').append(`<button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
-        $('.day').append(`<button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button><br />`);
+        $('.day').append(`<p class="edit-button"><button type="button" class="edit-form" onClick ="getIdValue(${k})">Edit</button>`);
+        $('.day').append(`<p class="delete-button"><button type="button" class="delete-form" onClick = "findDayToDelete(${k})">Delete</button></p><br />`);
       }
     })
     .catch(err => {

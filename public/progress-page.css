@@ -30,6 +30,15 @@ a {
   text-align: center;
 }
 
+p {
+  margin: 5px 3px;
+}
+
+.edit-button, .delete-button {
+  display: inline-block;
+
+}
+
 button {
   padding: 5px;
   border: 2px solid #577ba5;
