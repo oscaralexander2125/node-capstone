@@ -50,7 +50,7 @@ function displayProgress(data) {
     for (let i = 0; i < data.length; i++) {
       date = new Date(data[i].date);
       finalDate = date.toLocaleDateString();
-      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
+      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight} lbs<br /> Calories expended: ${data[i].caloriesBurned} kcal<br /> Caloric intake: ${data[i].caloriesConsumed} kcal<br />`);
       for (let j=0; j < data[i].meals.length; j++) {
         $('.day').append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
       }
@@ -63,7 +63,7 @@ function displayProgress(data) {
     for (let i = 0; i < 8; i++) {
       date = new Date(data[i].date);
       finalDate = date.toLocaleDateString();
-      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight}<br /> Calories expended: ${data[i].caloriesBurned}<br /> Caloric intake: ${data[i].caloriesConsumed}<br />`);
+      $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[i].weight} lbs<br /> Calories expended: ${data[i].caloriesBurned} kcal<br /> Caloric intake: ${data[i].caloriesConsumed} kcal<br />`);
       for (let j=0; j < data[i].meals.length; j++) {
         $('.day').append(`<p>Meal ${j+1}: ${data[i].meals[j]} <br />`);
       }
@@ -95,7 +95,7 @@ function lastThirtyDays() {
         for (let k = 0; k < data.length; k++) {
           date = new Date(data[k].date);
           finalDate = date.toLocaleDateString();
-          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />`)
           for (let j=0; j < data[k].meals.length; j++) {
             $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
@@ -106,7 +106,7 @@ function lastThirtyDays() {
         for (let k = 0; k < 30; k++) {
           date = new Date(data[k].date);
           finalDate = date.toLocaleDateString();
-          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+          $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />`)
           for (let j=0; j < data[k].meals.length; j++) {
             $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
           }
@@ -131,7 +131,7 @@ function allDays() {
       for (let k = 0; k < data.length; k++) {
         date = new Date(data[k].date);
         finalDate = date.toLocaleDateString();
-        $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight}<br /> Calories expended: ${data[k].caloriesBurned}<br /> Caloric intake: ${data[k].caloriesConsumed}<br />`)
+        $('.day').append(`<p>Date: ${finalDate}<br /> Weight: ${data[k].weight} lbs<br /> Calories expended: ${data[k].caloriesBurned} kcal<br /> Caloric intake: ${data[k].caloriesConsumed} kcal<br />`)
         for (let j=0; j < data[k].meals.length; j++) {
           $('.day').append(`<p>Meal ${j+1}: ${data[k].meals[j]} <br />`);
         }
