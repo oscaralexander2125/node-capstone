@@ -24,7 +24,7 @@ function directHomepage(userCreds) {
     if(res.ok) {
       return res.json();
     }
-    throw new Error(res.statusText);
+    throw new Error(res.json());
   })
   .then(responseJson => {
     //aToken = responseJson.authToken
