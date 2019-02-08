@@ -68,7 +68,12 @@ function createUser(user) {
     if (res.ok) {
       return res.json();
     }
-    throw new Error(res.statusText)
+    return new Promise((resolve, reject) => {
+      // will resolve or reject depending on status, will pass both "status" and "data" in either case
+      let func;
+      response.status < 400 ? func = resolve : func = reject;
+      response.json().then(data => func({'status': response.status, 'data': data}));
+    });
   })
   .then(() => {
     const userCred = {};
