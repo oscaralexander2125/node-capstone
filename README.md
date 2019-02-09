@@ -1,5 +1,5 @@
 <h1>Health Tracker</h2>
-Live app here: https://dashboard.heroku.com/apps/warm-bayou-57425
+Live app here: https://dashboard.heroku.com/apps/warm-bayou-57425<br />
 
 <p>They say the key to success if preparation and goal setting. 
 So this app is meant to help you keep track of your weight loss journey.
@@ -28,11 +28,11 @@ There is demo with a fake email and password already displayed so just click log
 <li>Mocha and Chai</li>
 
 <p>Login page</p>
-![](screenshots/Screenshot 2019-02-08 18.07.24.png)
+![](screenshots/)
 <p>Homepage</p>
-![](screenshots/Screenshot 2019-02-08 18.07.39.png)
+![](screenshots/)
 <p>Add progress</p>
-![](screenshots/Screenshot 2019-02-08 18.07.51.png)
+![](screenshots/)
 <p>Progress page</p>
-![](screenshots/Screenshot 2019-02-08 18.08.12.png)
-![](screenshots/Screenshot 2019-02-08 18.08.32.png)
+![](screenshots/)
+![](screenshots/)
