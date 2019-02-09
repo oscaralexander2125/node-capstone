@@ -29,7 +29,7 @@ There is demo with a fake email and password already displayed so just click log
 </ul>
 
 <p>Login page</p>
-![](/screenshots/login.png)
+<p>![](screenshots/login.png)</p>
 <p>Homepage</p>
 ![](screenshots/homepage.png)
 <p>Add progress</p>
