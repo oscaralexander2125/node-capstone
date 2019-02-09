@@ -24,7 +24,14 @@ function directHomepage(userCreds) {
     if(res.ok) {
       return res.json();
     }
-    throw new Error(res.json());
+    else {
+      return new Promise(function(resolve, reject){
+        resolve(res.json());
+      })
+      .then(data =>{
+        throw new Error(JSON.stringify(data));
+      })
+    }
   })
   .then(responseJson => {
     //aToken = responseJson.authToken
@@ -32,6 +39,7 @@ function directHomepage(userCreds) {
     $(location).attr('href', '/homepage.html');
   })
   .catch(err => {
+    //loginError(err);
     loginError(err);
   })
 }
@@ -68,12 +76,14 @@ function createUser(user) {
     if (res.ok) {
       return res.json();
     }
-    return new Promise((resolve, reject) => {
-      // will resolve or reject depending on status, will pass both "status" and "data" in either case
-      let func;
-      response.status < 400 ? func = resolve : func = reject;
-      response.json().then(data => func({'status': response.status, 'data': data}));
-    });
+    else {
+      return new Promise(function(resolve, reject){
+        resolve(res.json());
+      })
+      .then(data =>{
+        throw new Error(JSON.stringify(data));
+      })
+    }
   })
   .then(() => {
     const userCred = {};
@@ -82,7 +92,7 @@ function createUser(user) {
     directHomepage(userCred);
   })
   .catch(err => {
-    signUpError(err)
+    signUpError(JSON.parse(err.message));
   });
 }
 
@@ -93,7 +103,7 @@ function loginError(error) {
 
 function signUpError(error) {
   $('.register-error').html('');
-  $('.register-error').html(`<p>${error}</p>`);
+  $('.register-error').html(`<p>${error.message}</p>`);
 }
 
 function runLoginPage() {
