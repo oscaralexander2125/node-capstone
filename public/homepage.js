@@ -25,7 +25,6 @@ function renderInputForm() {
 
 function logOut() {
   $('.logout').on('click', function() {
-    console.log('logout button pressed')
     localStorage.removeItem("Bearer");
     $(location).attr('href', './index.html')
   })

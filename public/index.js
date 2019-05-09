@@ -2,7 +2,6 @@ let email;
 let aToken;
 
 function loginUser() {
-  console.log('hello');
   $('.login-form').on('submit', function(event) {
     event.preventDefault();
     const userInfo = {};
@@ -58,7 +57,6 @@ function registerUser() {
       createUser(newUser)
     }
   });
-console.log('hello2');
 
 }
 

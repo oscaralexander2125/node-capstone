@@ -27,7 +27,6 @@ function addMeal() {
       <label for="meal${i}" class="meal${i}">Meal <span class="meal-number">${i}</span></label>
       <input type="text" id="meal${i}">
       </li>`);
-      console.log(i);
     }
     else {
       i=7;
@@ -37,7 +36,6 @@ function addMeal() {
 };
 
 function renderRemoveButton(i) {
-  console.log(i + 'from remove button');
   if(i===1) {
     $('.remove-meal').remove();
     $('.meal-buttons').append(`<button type="button" class="remove-meal">Remove meal</button>`)
@@ -50,7 +48,6 @@ function addMealNumber() {
 
 function removeMeal() {
   $('.logger').on('click', '.remove-meal', function() {
-    console.log('hello from remove button');
     $('.meal-list').find(`.meal-${i}`).remove();
     removeMealNumber();
     iPositive();
@@ -69,15 +66,12 @@ function removeMealNumber() {
 function iPositive() {
   if(i < 1) {
     i =0;
-    console.log('keep i > ' + i);
   }
 }
 
 function getClientInfoForTheDay() {
-  console.log('get client info function wired correctly')
   $('form').on('submit', (event) => {
     event.preventDefault();
-    console.log('something happens in fetch function');
     const dailyData = {};
     const inputDate = $('#date').val()+'T12:24:00';
     const date = new Date(inputDate);
@@ -107,7 +101,6 @@ function getClientInfoForTheDay() {
 };
 
 function addProgress(updateData) {
-  console.log('something happens in fetch function ');
   fetch ('/api/track', {
     method: 'POST',
     headers:{

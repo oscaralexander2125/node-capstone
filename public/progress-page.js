@@ -30,7 +30,6 @@ function getProgressData() {
   })
   .then(responseJson => displayProgress(responseJson))
   .catch(err => {
-    console.log(`Something went wrong: ${err.message}`);
     $(location).attr('href', '/index.html');
   });
 }
@@ -81,7 +80,6 @@ function displayProgress(data) {
 };
 
 function lastSevenDays() {
-  console.log('seven days function wired');
   $('.7-days').on('click', function() {
     $('.js-days').html('');
     getProgressData();
@@ -91,7 +89,6 @@ function lastSevenDays() {
 
 function lastThirtyDays() {
   $('.30-days').on('click', function() {
-    console.log('30 day button');
     let date;
     let finalDate;
     getData()
@@ -137,8 +134,6 @@ function lastThirtyDays() {
 
 function allDays() {
   $('.all-days').on('click', function() {
-    console.log('all day button');
-    
     getData()
     .then(data => {
       $('.js-days').html('');
@@ -171,7 +166,6 @@ function editForm() {
 function renderEditForm(data) {
   editForm();
   const editData = [data];
-  console.log(editData);
 
   for (let i = 0; i < editData.length; i++) {
     $('main').html(`<section role = "region" class = "edit-page">
@@ -220,7 +214,6 @@ function renderEditForm(data) {
     $('.meal-buttons').append(`<button type="button" class="remove-meal">Remove meal</button>`)
   }
   l=data.meals.length;
-  console.log(l);
 }
 
 let l;
@@ -228,7 +221,6 @@ let l;
 
 function addMeal() {
   $('main').on('click', '.add-meal', function() {
-    console.log('add meal button clicked');
     renderRemoveButton(l);
     addMealNumber();
     if(l<8) {
@@ -236,7 +228,6 @@ function addMeal() {
       <label for="meal${l}" class="meal${l}">Meal <span class="meal-number">${l}</span></label>
       <input type="text" id="meal${l}">
       </li>`);
-      console.log(l);
     }
     else {
       console.log('max of 7 meals');
@@ -248,7 +239,6 @@ function addMeal() {
 };
 
 function renderRemoveButton(i) {
-  console.log(l + 'from remove button');
   if(l===0) {
     $('.remove-meal').remove();
     $('.meal-buttons').append(`<button type="button" class="remove-meal">Remove meal</button>`)
@@ -258,13 +248,11 @@ function renderRemoveButton(i) {
 function addMealNumber() {
   if(l<8) {
     l+=1;
-    console.log(l)
   }
 };
 
 function removeMeal() {
   $('main').on('click', '.remove-meal', function() {
-    console.log('hello from remove button');
     $('.meal-list').find(`.meal-${l}`).remove();
     removeMealNumber();
     iPositive();
@@ -278,7 +266,6 @@ function removeMealNumber() {
 function iPositive() {
   if(l < 1) {
     l =0;
-    console.log('keep i > ' + l);
   }
 }
 
@@ -312,10 +299,8 @@ function getDayId(id) {
 
 function saveEditForm(id) {
   getIndividualItem(id);
-  console.log(id);
   $('main').on('submit', function(event) {
     event.preventDefault();
-    console.log('hello im save submit button');
     const updateData = {};
     if($('#weight').val() !== "") {
       updateData.weight = $('#weight').val();
@@ -336,13 +321,11 @@ function saveEditForm(id) {
     const mealArray = updateData.meals.filter(meal => meal !== "");
     updateData.meals = mealArray;
     updateData.id = id;
-    console.log(updateData);
     updateProgress(updateData);
   })
 };
 
 function updateProgress(updated) {
-  console.log(updated)
   fetch(`/api/track/${updated.id}`, {
     method: 'PUT',
     headers: {
@@ -396,7 +379,6 @@ function findDayToDelete(id) {
   })
   .then(deleteItem => {
     deleteDay(deleteItem);
-    console.log(deleteItem)
   })
   .catch(err => {
     displayHealthRecordError(err);
