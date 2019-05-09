@@ -28,10 +28,10 @@ There is demo with a fake email and password already displayed so just click log
 <li>Mocha and Chai</li>
 </ul>
 
-<p>Login page</p>
+
 ![](screenshots/login.png)
 
-<p>Homepage</p>
+
 ![](screenshots/about.png)
 
 <p>Add progress</p>
