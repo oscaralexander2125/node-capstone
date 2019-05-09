@@ -30,10 +30,13 @@ There is demo with a fake email and password already displayed so just click log
 
 <p>Login page</p>
 ![](screenshots/login.png)
+
 <p>Homepage</p>
 ![](screenshots/homepage.png)
+
 <p>Add progress</p>
 ![](screenshots/post.png)
+
 <p>Progress page</p>
 ![](screenshots/progress.png)
 ![](screenshots/edit.png)
