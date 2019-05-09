@@ -1,5 +1,5 @@
 <h1>Health Tracker</h2>
-<h3>Live app here: https://dashboard.heroku.com/apps/warm-bayou-57425</h3><br />
+<h3>Live app here: https://warm-bayou-57425.herokuapp.com/</h3><br />
 
 <p>They say the key to success if preparation and goal setting. 
 So this app is meant to help you keep track of your weight loss journey.
