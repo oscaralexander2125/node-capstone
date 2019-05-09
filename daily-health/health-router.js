@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const {HealthTracker} = require('./models');
 const {User} = require('../users');
 const bodyParser = require('body-parser');
@@ -43,7 +42,6 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', jwtAuth, (req, res) => {
-  //console.log(req.body);
   const requiredFields = ['weight'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];

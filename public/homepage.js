@@ -37,9 +37,3 @@ function runHomepage() {
 }
 
 $(runHomepage);
-
-//get date from input
-// save var
-//create generic fetch; endpoint to verify users exsitence;
-//if doesnt exist take back to
-//icnluded values in edit

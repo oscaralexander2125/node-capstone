@@ -17,7 +17,6 @@ function getData() {
 }
 
 function getProgressData() {
-  //will be used to get data from api
   fetch('/api/track', {
     headers: {
       "Authorization": `Bearer ${token}`
@@ -36,7 +35,6 @@ function getProgressData() {
   });
 }
 
-//will need at add calories burned and consumed and meal to the real api
 function displayProgress(data) {
   let date;
   let finalDate;
@@ -165,13 +163,9 @@ function allDays() {
   });
 }
 function editForm() {
-  //$('.js-days').on('click', '.edit-form', function() {
-    //console.log(dayId);
-    //$('header').hide();
     $('.buttons').hide();
     $('.display-progress').hide();
-    //renderEditForm();
-  //})
+
 }
 
 function renderEditForm(data) {
@@ -437,9 +431,7 @@ function displayEditFormError(error) {
 
 function runProgressPage() {
   getProgressData();
-  //editForm();
   dontEdit();
-  //saveEditForm();
   addMeal();
   removeMeal();
   lastSevenDays();

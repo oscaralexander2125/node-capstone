@@ -34,12 +34,10 @@ function directHomepage(userCreds) {
     }
   })
   .then(responseJson => {
-    //aToken = responseJson.authToken
     localStorage.setItem("Bearer", responseJson.authToken)
     $(location).attr('href', '/homepage.html');
   })
   .catch(err => {
-    //loginError(err);
     loginError(err);
   })
 }

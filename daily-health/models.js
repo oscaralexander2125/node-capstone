@@ -1,13 +1,11 @@
 'use strict';
 
-
 const mongoose = require('mongoose');
 const {User} = require('../users');
 
 mongoose.Promise = global.Promise;
 
 const healthTrackSchema = mongoose.Schema({
-  //email:{type: String, required: true},
   weight: {type: String, required: true},
   caloriesBurned: {type: String, default: 0},
   caloriesConsumed:{type: String, default: 0},
