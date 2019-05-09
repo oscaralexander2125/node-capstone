@@ -34,8 +34,8 @@ There is demo with a fake email and password already displayed so just click log
 
 ![](screenshots/about.png)
 
-<p>Add progress</p>
+
 ![](screenshots/add.png)
 
-<p>Progress page</p>
+
 ![](screenshots/view.png)
